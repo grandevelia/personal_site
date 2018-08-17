@@ -1,0 +1,20 @@
+html{
+	background-color: black;
+	height: 100%;
+	overflow-x: hidden;
+}
+body, #root {
+	height: 100%;
+	margin: 0;
+}
+*{
+	box-sizing: border-box;
+	font-family: 'Raleway', sans-serif;
+}
+.content{
+	position: relative;
+	background-color: black;
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+}

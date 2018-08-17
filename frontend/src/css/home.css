@@ -1,0 +1,115 @@
+.wrap{
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+}
+#grad{
+	position: relative;
+	flex-basis: 52%;
+	flex: 1;
+	width: 100%;
+	z-index: 9;
+	background-color: black;
+	box-shadow: 0px 2px 1px rgba(0,0,0,0.25);
+	-webkit-box-shadow: 0px 2px 1px rgba(0,0,0,0.25);
+	-moz-box-shadow: 0px 2px 1px rgba(0,0,0,0.25);
+}
+canvas{
+	position: absolute;
+	top: -3rem;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 100%;
+	height: 100%;
+}
+#top-info{
+	max-width: 50%;
+	color: white;
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	background-color: rgba(0,0,0,0);
+	bottom: 2.5%;
+	font-size: 0.8em;
+  	padding: 2.5%;
+}
+#top-info-title{
+	flex-basis: 100%;
+	font-size: 1.7em;
+	background: -webkit-linear-gradient(left top, red, rgb(91,117,244));
+ 	-webkit-background-clip: text;
+ 	-webkit-text-fill-color: transparent;
+  	margin-bottom: 2.5%;
+}
+#bottom-wrap{
+	background: red; /* For browsers that do not support gradients */
+  	background: -webkit-linear-gradient(left top, red, rgb(91,117,244)); /* For Safari 5.1 to 6.0 */
+  	background: -o-linear-gradient(bottom right, red, rgb(91,117,244)); /* For Opera 11.1 to 12.0 */
+  	background: -moz-linear-gradient(bottom right, red, rgb(91,117,244)); /* For Firefox 3.6 to 15 */
+  	background: linear-gradient(to bottom right, rgb(255, 33, 39), rgb(255, 33, 59), rgb(59, 33, 259)); /* Standard syntax */
+	flex-basis: 48%;
+	flex: 1;
+	width: 100%;
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+}
+#site-info-wrap{
+	position: relative;
+	flex-basis: 33%;
+	display: flex;
+	flex-direction: column;
+	text-align: left;
+	margin: 2.5%;
+}
+#site-info-title{
+	margin-bottom: 2.5%;
+	font-size: 1.5em;
+	color: rgb(249, 248, 255);
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.4);
+}
+#site-info-text{
+	color: white;
+	font-size: 0.8em;
+}
+#animation-controls{
+	position: relative;
+	flex-basis: 40%;
+	display: flex;
+	flex-direction: column;
+	text-align: left;
+	padding: 1.25% 2.5%;
+	margin: 2.5%;
+	border: 1px solid rgba(255,255,255,0.7);
+	background-color: rgba(0,0,0,0.15)
+}
+#controls-title{
+	font-size: 1.25em;
+	color: white;
+	display: flex;
+	justify-content: space-between;
+}
+#toggle-animation{
+	font-size: 0.5em !important;
+	background-color: white;
+	color: red;
+	height: 3em;
+	padding: 2.5%;
+	line-height: 1.5em;
+}
+#toggle-animation:hover{
+	cursor: pointer;
+	background-color: red;
+	color: white;
+}
+.control{
+	font-size: 0.8em;
+	margin-top: 2.5%;
+	display: flex;
+	justify-content: space-around;
+}
+.control-name{
+	
+}
+.control-desc{
+}

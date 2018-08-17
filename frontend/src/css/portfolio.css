@@ -1,0 +1,103 @@
+#portfolio-wrap{
+	color: white;
+	display: flex;
+	flex: 1;
+}
+.sidebar{
+	flex-basis: 20%;
+	display: flex;
+	flex-direction: column;
+	background-color: rgba(255,255,255,0.2);
+	padding: 1.25%;
+	font-size: 0.8em;
+}
+.sidebar-link{
+	color: white;
+	margin-bottom: 2.5%;
+}
+.sidebar-link:hover{
+	text-decoration: underline;
+	cursor: pointer;
+}
+#portfolio-body{
+	flex-basis: 80%;
+	padding: 1.25%;
+}
+#admin-area{
+	display: flex;
+	flex-direction: column;
+}
+#input-title{
+	margin-top: 2.5%;
+	height: 2.5rem;
+}
+#input-body{
+	margin-top: 1.25%;
+	flex: 1;
+	height: 5rem;
+}
+#input-submit{
+	margin-top: 1.25%;
+	width: 30%;
+	display: inline-block!important;
+	height: 2rem!important;
+	color: rgb(20,20,20);
+	background-color: rgb(27,255,72);
+	border: none;
+	outline: none;
+	align-self: flex-end;
+}
+#input-reset{
+	margin-top: 1.25%;
+	width: 30%;
+	display: inline-block;
+	height: 2rem;
+	border: none;
+	align-self: flex-end;
+	outline: none;
+}
+#input-submit:hover{
+	cursor: pointer;
+	background-color: rgb(37,215,32);
+}
+#input-reset:hover{
+	cursor: pointer;
+	background-color: rgba(255,255,255,0.8);
+}
+.snippet-wrap{
+	margin-bottom: 2.5%
+}
+.snippet-title{
+	font-size: 1.5em;
+}
+.snippet-text{
+	font-size: 0.9em;
+}
+.snippet-wrap button{
+	border-radius: 0px;
+	outline: none;
+	border: none;
+	margin-top: 1.25%;
+	height: 1.25rem;
+	width: 15%;
+	color: white;
+}
+.snippet-wrap button:hover{
+	cursor: pointer;
+}
+.snippet-edit{
+	background-color: rgb(48, 57, 240);
+}
+.snippet-delete{
+	margin-left: 1.25%;
+	background-color: rgb(240,57,48);
+}
+.snippet-edit:hover{
+	background-color: rgb(28, 37, 210);
+}
+.snippet-delete:hover{
+	background-color: rgb(210,37,28);
+}
+
+
+

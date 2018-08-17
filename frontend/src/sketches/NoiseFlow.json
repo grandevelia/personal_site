@@ -1,0 +1,11 @@
+{
+    "title":"Noise Flow - Particles on a force field",
+    "file":"NoiseFlow",
+    "description":"",
+    "controlBindings":[
+        "Mouseover"
+    ],
+    "controlDescriptions":[
+        "Drop new particles"
+    ]
+}
