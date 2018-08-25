@@ -1,13 +1,11 @@
 import p5 from "p5";
-
 export default function Sketch (p) {
-
   let myNoiseFlow = [];
   let playAnimation = true;
-  let height = 0.42*window.innerHeight;
+  let height = 0.42 * window.innerHeight;
   let width = window.innerWidth;
 
-  p.setup = function (props) {
+  p.setup = function () {
     p.createCanvas(width, height);
     p.colorMode(p.HSB, 255);
     p.pixelDensity(1);
@@ -16,10 +14,8 @@ export default function Sketch (p) {
   };
 
   p.myCustomRedrawAccordingToNewPropsHandler = function(props) {
+    this.test = props.test;
     playAnimation = props.playAnimation;
-    if (props.mouseOn){
-
-    }
   };
 
   p.draw = () => {

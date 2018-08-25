@@ -1,18 +1,26 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
-
-import '../css/blog.css';
+import { Link } from 'react-router-dom';
 
 export default class BlogSidebar extends Component {
 	render(){
+		let myBlogs = this.props.blogs;
 		return(
 			<div className='sidebar'>
-				{this.props.blogs.map((blog)=>{
+				{myBlogs.map((blog)=>{
 					let active = "";
 					if (blog.id === this.props.active){
 						active = " active";
 					}
-					return <Link to={{pathname: "/Blog/" + blog.title.replace(/ /g, "-"), state: blog}} className={"sidebar-link " + active} key={blog.id}>{blog.title}</Link>
+
+					return (
+						<Link 
+							to={"/Blog/" + blog.title.replace(/ /g, "-")} 
+							className={"sidebar-link " + active} 
+							key={"sidebar-" + blog.id}
+						>
+							{blog.title}
+						</Link>
+					)
 				})}
 			</div>
 		)

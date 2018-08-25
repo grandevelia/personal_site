@@ -1,4 +1,4 @@
-export const addBlog = text => {
+export const addBlog = (title, text) => {
 	return (dispatch, getState) => {
 		let headers = {
 			"Content-Type": "application/json"
@@ -7,7 +7,7 @@ export const addBlog = text => {
     	if(token){
     		headers["authorization"] = "Token " + token;
     	}
-		let body = JSON.stringify({text,});
+		let body = JSON.stringify({title, text,});
 		return fetch("/api/blogs/", {headers, method: "POST", body})
 		.then(res => {
 			if (res.status < 500){
@@ -38,13 +38,12 @@ export const updateBlog = (blogId, title, text) => {
 		let headers = {
 			"Content-Type": "application/json"
 		};
-		let {token} = getState().auth;
+		let { token } = getState().auth;
     	if(token){
     		headers["authorization"] = "Token " + token;
     	}
 		let body = JSON.stringify({title, text,});
-		let url = "/api/blogs/"+blogId+"/";
-		return fetch(url, {headers, method: "PUT", body})
+		return fetch("/api/blogs/"+blogId+"/", {headers, method: "PUT", body})
 		.then(res => {
 			if (res.status < 500){
 				return res.json().then(data => {
@@ -106,7 +105,7 @@ export const deleteBlog = blogId => {
 	}
 }
 
-export const fetchBlogs = (from_id, numToFetch) => {
+export const fetchBlogs = () => {
 	return (dispatch, getState) => {
 		let headers = {
 			"Content-Type": "application/json"

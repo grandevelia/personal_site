@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { blogs } from "../actions";
-import { Route, BrowserRouter as Router, Switch, withRouter } from 'react-router-dom';
+import { Link, Route, BrowserRouter as Router, Switch, withRouter } from 'react-router-dom';
 
 import '../css/blog.css';
 import BlogSidebar from './BlogSidebar';
@@ -53,6 +53,7 @@ class Blog extends Component {
 							/> : ""
 						}
 						<Switch>
+							<Route exact path="/Blog/" render={()=> <BlogHome blogs={myBlogs} />} />
 							{myBlogs.map(blog => {
 								return (
 									<Route 
@@ -76,6 +77,25 @@ class Blog extends Component {
 				</div>
 			</Router>
 		)
+	}
+}
+class BlogHome extends Component {
+	render(){
+		let myBlogs = this.props.blogs;
+		return (
+			myBlogs.map((blog, id) => {
+				return (
+					<div className='blog-snippet' key={`blog_${id}`}>
+						<div className='blog-snippet-title'>{blog.title}</div>
+						<div className='blog-snippet-text'>{blog.text + "..."}</div>
+						<Link 
+							to={"/Blog/" + blog.title.replace(/ /g, "-")}
+							className='go-to-blog'
+						>See Full Post</Link>
+					</div>
+				)
+			})
+		);
 	}
 }
 

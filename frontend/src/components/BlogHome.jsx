@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { blogs } from "../actions";
-import { Route, BrowserRouter as Router, Switch, withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import '../css/blog.css';
 import BlogSidebar from './BlogSidebar';
-import BlogTemplate from "./BlogTemplate";
 import BlogAdmin from "./BlogAdmin";
 
-class Blog extends Component {
+class BlogHome extends Component {
 	state = {
 		title: "",
 		text: "",
@@ -36,9 +35,7 @@ class Blog extends Component {
 	}
 	render(){
 		let myBlogs = this.props.blogs;
-		console.log(this.props)
 		return(
-			<Router>
 				<div id='all-blogs-wrap'>
 					<BlogSidebar blogs={myBlogs} active={this.state.active}/>
 					<div id='blog-area'>
@@ -52,29 +49,22 @@ class Blog extends Component {
 								text={this.state.text}
 							/> : ""
 						}
-						<Switch>
-							{myBlogs.map(blog => {
-								return (
-									<Route 
-										exact path={"/Blog/" + blog.title.replace(/ /g, "-")} 
-										key={blog.id} 
-										render={() => {
-											return (
-												<BlogTemplate 
-													blog={blog} 
-													delete={(id) => this.props.deleteBlog(this.state.active)}
-													selectForEdit={(id, title, text) => this.selectForEdit(id, title, text)}
-													isAuthenticated={this.props.isAuthenticated}
-												/>
-											);
-										}}
-									/>
-								)
-							})}
-						</Switch>
+                        {
+                            myBlogs.map((blog, id) => {
+                                return (
+                                    <div className='blog-snippet' key={`blog_${id}`}>
+                                        <div className='blog-snippet-title'>{blog.title}</div>
+                                        <div className='blog-snippet-text' dangerouslySetInnerHTML={{ __html:blog.text.substring(0,500) + "..."}} />
+                                        <Link 
+                                            to={"/Blog/" + blog.title.replace(/ /g, "-")}
+                                            className='go-to-blog'
+                                        >See Full Post</Link>
+                                    </div>
+                                )
+                            })
+                        }
 					</div>
 				</div>
-			</Router>
 		)
 	}
 }
@@ -103,4 +93,4 @@ const mapDispatchToProps = dispatch => {
 	}
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Blog))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(BlogHome))

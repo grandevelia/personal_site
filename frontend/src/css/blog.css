@@ -13,7 +13,7 @@
 }
 .sidebar-link{
 	color: white;
-	margin-bottom: 2.5%;
+	margin: 5% 2.5%;
 }
 .sidebar-link:hover{
 	text-decoration: underline;
@@ -22,9 +22,7 @@
 #blog-area{
 	flex-basis: 80%;
 	padding: 1.25%;
-	display: flex;
-	flex-wrap: wrap;
-	flex-direction: column;
+	display: inline-block;
 }
 #admin-area{
 	display: flex;
@@ -71,18 +69,26 @@
 	background-color: rgba(255,255,255,0.8);
 	box-shadow: 0px 1px 1px rgba(255,255,255,0.3);
 	margin: 1.25%;
-	flex-basis: 30%;
-	height: 40%;
 	padding: 2.5%;
 	display: flex;
 	flex-direction: column;
 }
+.blog-snippet-title{
+	color: black;
+	font-weight: bold;
+}
 .blog-snippet-text{
 	flex: 1;
+	font-size: 0.8em;
+	color: black;
 }
 .go-to-blog{
 	text-align: right;
-	color: white;
+	color: rgb(27, 120, 220);
+}
+.go-to-blog:hover{
+	cursor: pointer;
+	color: rgb(27, 80, 190);
 }
 .go-to-blog:hover{
 	cursor: pointer;
@@ -122,4 +128,6 @@
 	margin-top: 2.5%;
 	padding: 1% 5%;
 }
-
+.inset-blog-area{
+	line-height: 1.75em;
+}

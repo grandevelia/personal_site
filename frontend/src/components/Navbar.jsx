@@ -45,7 +45,7 @@ export default class Navbar extends Component {
 function NavbarLink(props){
 	return (
 		<div>
-			<Link to={'/' + props.id} id={props.mobile + props.id.toLowerCase()} className={props.mobile + "navbar-link"}>{props.id}</Link>
+			<Link to={'/' + props.id + "/"} id={props.mobile + props.id.toLowerCase()} className={props.mobile + "navbar-link"}>{props.id}</Link>
 		</div>
 	);
 }

@@ -22,7 +22,7 @@ class BlogViewSet(viewsets.ModelViewSet):
 	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
 	serializer_class = BlogSerializer
 	def get_queryset(self):
-		return Blog.objects.all()
+		return Blog.objects.all().order_by('created_at')
 
 	def perform_create(self, serializer):
 		serializer.save(owner=self.request.user)

@@ -11,6 +11,7 @@ import Layout from "./components/Layout";
 import Home from "./components/Home";
 import Portfolio from "./components/Portfolio";
 import Blog from "./components/Blog";
+import BlogHome from "./components/BlogHome";
 import NotFound from "./components/NotFound";
 import Login from "./components/Login";
 
@@ -34,9 +35,10 @@ class RootContainerComponent extends Component {
           <Layout>
             <Switch>
                 <Route exact path="/" component={Home} />
-                <Route path="/Home" component={Home} />
-                <Route path="/Blog" component={Blog} />
-                <Route path="/Login" component={Login}/>
+                <Route path="/Home/" component={Home} />
+                <Route exact path="/Blog/" component={BlogHome} />
+                <Route path="/Blog/" component={Blog} />
+                <Route path="/Login/" component={Login} />
                 {portfolioRoutes}
                 <Route component={NotFound} />
             </Switch>

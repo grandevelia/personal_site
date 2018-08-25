@@ -9,11 +9,14 @@ export default function blogs(state=initialState, action){
 		case 'ADD_BLOG':
 			return [...state, action.blog];
 		case 'UPDATE_BLOG':
-			let blogToUpdate = blogList.filter((blog, i) => {
+			let blogToUpdate = blogList.length;
+			for (let i = 0; i < blogList.length; i ++){
+				let blog = blogList[i];
 				if (blog.id === action.blog.id){
-					return i;
+					blogToUpdate = i;
+					break;
 				}
-			});
+			}
 			blogList.splice(blogToUpdate, 1, action.blog);
 			return blogList;
 		case 'DELETE_BLOG':

@@ -3,17 +3,18 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../css/home.css';
 import P5Wrapper from './react-p5-wrapper';
-import Eye from '../sketches/Eye';
-import NoiseFlow from '../sketches/NoiseFlow';
+import NoiseFlowSketch from '../sketches/FactoryTest';
+import Flipper from '../sketches/Flipper';
 import { sketches } from '../actions';
+import { compose } from '../sketches/SketchComposer.js';
 
 const sketchComponents = [
-	Eye,
-	NoiseFlow
+	NoiseFlowSketch,
+	Flipper
 ]
 const titleMap = {
-	Eye:0,
-	NoiseFlow: 1
+	NoiseFlowSketch: 0,
+	Flipper: 1
 }
 class Home extends Component {
 	state = {
@@ -28,9 +29,13 @@ class Home extends Component {
 		this.props.fetchSketch();
 	}
 	getSketch(){
-		let key = titleMap[this.props.sketch.file];
-		let Comp = sketchComponents[key];
-		let temp = <P5Wrapper sketch={Comp} playAnimation={this.state.playAnimation} />
+		//let key = titleMap[this.props.sketch.file];
+		//let Comp = sketchComponents[key];
+		let NewComp = compose(sketchComponents);
+		let temp = <P5Wrapper 
+						sketch={ NewComp } 
+						playAnimation={ this.state.playAnimation } 
+					/>
 		return temp;
 	}
 	render(){	
@@ -49,14 +54,14 @@ class Home extends Component {
 
 					<div id='site-info-wrap'>
 						<div id='site-info-title'>Welcome to my site!</div>
-						<div id='site-info-text'><Link to='/Blog/HomeExplanation' >How does this work?</Link></div>
+						<div id='site-info-text'><Link to='/Blog/This'>How does this work?</Link></div>
 					</div>
 					<div id='animation-controls'>
 						<div id='controls-title'>Controls
 							<div className='button' 
 								onClick={this.handleClick}
 								id='toggle-animation'
-							>{this.state.playAnimation ? "Pause Animation":"Play Animation"}</div>
+							>{this.state.playAnimation ? "Pause":"Start"}</div>
 						</div>
 						{Object.keys(controls).map(binding => {
 							return <div key={binding} className='controlBinding'>{controls[binding]}</div>;
