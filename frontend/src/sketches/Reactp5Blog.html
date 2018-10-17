@@ -1,0 +1,125 @@
+<div class='code'>
+export default function Sketch (p){
+    <div class='code-line'>
+    let classVar = new MyClass();
+    </div>
+    <div class='code-line'>
+    p.setup = (props) => {
+        <div class='code-line'>
+        p.createCanvas(200,200);
+        </div>
+    }
+    </div>
+    <div class='code-line'>
+    p.draw = () => {
+        <div class='code-line'>
+        myClass.display();
+        </div>
+    }
+    </div>
+    <div class='code-line'>
+    class MyClass {
+        <div class='code-line'>
+        constructor(){}
+        </div>
+        <div class='code-line'>
+        display = function(){}
+        </div>
+    }
+    </div>
+}
+</div>
+
+
+<div class='code'>
+export function compose(sketches){
+    <div class='code-line'>
+    let Sketch = function(p){
+        <div class='code-line'>
+        let width = window.innerWidth;
+        </div>
+        <div class='code-line'>
+        let height = parseInt(0.42*window.innerHeight, 10);
+        </div>
+        <div class='code-line'>
+        let classes = [];
+        </div>
+        <div class='code-line'>
+        //Initialize sketches in setup so they can use p.width/height properties
+        </div>
+        <div class='code-line'>
+        p.setup = function(){
+            <div class='code-line'>
+            p.createCanvas(width, height);
+            </div>
+            <div class='code-line'>
+            for ( let i = 0; i < sketches.length; i ++){
+                <div class='code-line'>
+                let curr = new sketches[i](p)
+                </div>
+                <div class='code-line'>
+                classes.push(curr);
+                </div>
+            }
+            </div>
+        }
+        </div>
+        <div class='code-line'>
+        p.draw = () => {
+            <div class='code-line'>
+            for ( let i = 0; i < classes.length; i ++){
+                <div class='code-line'>
+                classes[i].display();
+                </div>
+            }
+            </div>
+        }
+        </div>
+        <div class='code-line'>
+        return Sketch;
+        </div>
+    }
+    </div>
+}
+</div>
+
+<div class='code'>
+    <div class='code-line'>
+    import p5 from 'p5';
+    </div>
+    <div class='code-line'>
+    import OtherSketch from './OtherSketch';
+    </div>
+    <div class='code-line'>
+    function TopLevelSketch(p){
+        <div class='code-line'>
+        let varForInnerClass = Math.random();
+        </div>
+        <div class='code-line'>
+        let myInnerClass = new InnerClass(varForInnerClass);
+        </div>
+        <div class='code-line'>
+        let myOtherClass = new OtherClass(p);
+        </div>
+        <div class='code-line'>
+        const display = () => {...}
+        </div>
+        <div class='code-line'>
+        function InnerClass(randomNumber){
+            <div class='code-line'>
+            let myRand = p5.Vector(randomNumber * 2);
+            </div>
+            <div class='code-line'>
+            const innerFunc = (rand) => {
+                <div class='code-line'>
+                return myRand;
+                </div>
+            }
+            </div>
+            <div class='code-line'>
+            return {myRand: myRand};
+            </div>
+        }
+        </div>
+    }
+</div>

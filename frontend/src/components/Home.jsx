@@ -31,30 +31,44 @@ class Home extends Component {
 	getSketch(){
 		//let key = titleMap[this.props.sketch.file];
 		//let Comp = sketchComponents[key];
-		let NewComp = compose(sketchComponents);
-		let temp = <P5Wrapper 
+		//let NewComp = compose(sketchComponents);
+		/*let temp = <P5Wrapper 
 						sketch={ NewComp } 
 						playAnimation={ this.state.playAnimation } 
-					/>
-		return temp;
+					/>*/
+		//return temp;
+		return <div id='sketch'></div>
 	}
 	render(){	
+		console.log(this.props)
 		let controls = this.props.sketch.controlBindings;
 		let descriptions = this.props.sketch.controlDescriptions;
 		return(
-			<div className='wrap'>
-				<div id='grad'>
-					{this.getSketch()}
-					<div id='top-info'>
-						<div id='top-info-title'>Random Animation</div>
-						<div id='top-info-body'>{this.props.sketch.title}</div>
+			<div className='content'>
+				<div className='section-title' id='top-title'>COMPOSER</div>
+				<div className='section' id='top-section'>
+					<div id='canvas-wrap'>
+						<div id='sketch-standin'>
+							<div id='canvas-area'>
+								<div className='canvas-section' id='canvas-left'>
+									<div className='canvas-section-title'>Available Components</div>
+								</div>
+								{this.getSketch()}
+								<div className='canvas-section' id='canvas-right'>
+									<div className='canvas-section-title'>In Use</div>
+								</div>
+							</div>
+							<div id='sketch-controls'>
+
+							</div>
+						</div>
 					</div>
 				</div>
 				<div id='bottom-wrap'>
 
 					<div id='site-info-wrap'>
 						<div id='site-info-title'>Welcome to my site!</div>
-						<div id='site-info-text'><Link to='/Blog/This'>How does this work?</Link></div>
+						<div id='site-info-text'><Link to='/Blog/P5JS-Composition-in-React'>How does this work?</Link></div>
 					</div>
 					<div id='animation-controls'>
 						<div id='controls-title'>Controls

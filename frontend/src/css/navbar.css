@@ -17,10 +17,9 @@ a{
   color: rgb(220,220,220);
 }
 #navbar-links{
-  flex-basis: 100%;
-  flex: 1;
+  margin-left: 70%;
+  width: 30%;
   display: flex;
-  justify-content: space-around;
 }
 #navbar-links > div{
   flex: 1;

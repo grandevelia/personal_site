@@ -131,3 +131,15 @@
 .inset-blog-area{
 	line-height: 1.75em;
 }
+.code{
+	background-color: white;
+	color: black;
+	padding: 2.5%;
+	margin: 2.5% 2.5% 2.5% 0;
+}
+.code-line{
+	margin-left: 3rem;
+}
+.italic{
+	font-style: italic;
+}

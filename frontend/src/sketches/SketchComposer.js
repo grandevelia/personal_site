@@ -3,7 +3,6 @@ export function compose(sketches){
         let width = window.innerWidth;
         let height = parseInt(0.42*window.innerHeight, 10);
         let classes = [];
-        //let playAnimation = true;
        
         //Initialize sketches in setup so they can use p.width/height properties
         p.setup = function(){
@@ -14,10 +13,6 @@ export function compose(sketches){
             }
             classes[0].display();
         }
-        /*p.myCustomRedrawAccordingToNewPropsHandler = function(props) {
-            this.test = props.test;
-            playAnimation = props.playAnimation;
-        }*/
         p.draw = () => {
             for ( let i = 0; i < classes.length; i ++){
                 classes[i].display();

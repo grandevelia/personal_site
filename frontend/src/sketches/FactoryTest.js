@@ -5,7 +5,6 @@ function NoiseFlowSketch(p){
     p.colorMode(p.HSB, 255);
     let playAnimation = true;
     let myNoiseFlow = new NoiseFlow(p.width, p.height);
-    let flipper = new Flipper(p);
 
     const display = () => {
         p.background(0);
