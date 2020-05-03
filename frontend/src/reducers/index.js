@@ -1,11 +1,9 @@
 import { combineReducers } from 'redux';
-import snippets from "./snippets";
-import auth from "./auth";
 import blogs from "./blogs";
-import sketches from "./sketches";
+import models from "./models";
 
 const myApp = combineReducers({
-	snippets, auth, blogs, sketches,
+	blogs, models
 })
 
 export default myApp

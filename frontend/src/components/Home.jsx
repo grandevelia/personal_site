@@ -1,107 +1,150 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../css/home.css';
-import P5Wrapper from './react-p5-wrapper';
-import NoiseFlowSketch from '../sketches/FactoryTest';
-import Flipper from '../sketches/Flipper';
-import { sketches } from '../actions';
-import { compose } from '../sketches/SketchComposer.js';
+import { models } from "../actions";
 
-const sketchComponents = [
-	NoiseFlowSketch,
-	Flipper
-]
-const titleMap = {
-	NoiseFlowSketch: 0,
-	Flipper: 1
-}
 class Home extends Component {
-	state = {
-		playAnimation: true
+	constructor(props) {
+		super(props);
+		this.video = React.createRef();
+		this.photo = React.createRef();
+		this.canvas = React.createRef();
+
+		this.state = {
+			streaming: false,
+			width: 320,
+			height: 0,
+			photoData: null,
+			stream: null
+		}
 	}
-	handleClick = e => {
+	async getMedia(constraints) {
+		let stream = null;
+		try {
+			stream = await navigator.mediaDevices.getUserMedia(constraints);
+			this.setState({
+				stream: stream
+			}, () => {
+				try {
+					this.video.srcObject = this.state.stream;
+					this.video.play();
+				} catch (err) {
+					this.state.stream.getTracks()[0].stop();
+				}
+			})
+
+		} catch (err) {
+			console.log(err)
+			alert("Camera not found")
+		}
+	}
+	handlePlay() {
+		if (!this.state.streaming) {
+			let height = this.state.height;
+			let width = this.state.width;
+			height = this.video.videoHeight / (this.video.videoWidth / width);
+
+			// Firefox currently has a bug where the height can't be read from
+			// the video, so we will make assumptions if this happens.
+
+			if (isNaN(height)) {
+				height = width / (4 / 3);
+			}
+
+			this.setState({
+				streaming: true,
+				width: width,
+				height: height
+			})
+
+		}
+	}
+	clearPhoto() {
+		let canvas = this.canvas;
+		let context = canvas.getContext('2d');
+		context.fillStyle = "#AAA";
+		context.fillRect(0, 0, canvas.width, canvas.height);
+
+		let data = canvas.toDataURL('image/png');
 		this.setState({
-			playAnimation: !this.state.playAnimation
-		});
+			photoData: data
+		})
 	}
-	componentDidMount(){
-		this.props.fetchSketch();
+	takePicture() {
+		let canvas = this.canvas;
+		let context = canvas.getContext('2d');
+		if (this.state.width && this.state.height) {
+			canvas.width = this.state.width;
+			canvas.height = this.state.height;
+			context.drawImage(this.video, 0, 0, this.state.width, this.state.height);
+
+			let data = canvas.toDataURL('image/png');
+			this.photo.setAttribute('src', data);
+			this.state.stream.getTracks()[0].stop();
+			this.props.fetchModel(data);
+		} else {
+			this.clearPhoto();
+		}
 	}
-	getSketch(){
-		//let key = titleMap[this.props.sketch.file];
-		//let Comp = sketchComponents[key];
-		//let NewComp = compose(sketchComponents);
-		/*let temp = <P5Wrapper 
-						sketch={ NewComp } 
-						playAnimation={ this.state.playAnimation } 
-					/>*/
-		//return temp;
-		return <div id='sketch'></div>
-	}
-	render(){	
-		console.log(this.props)
-		let controls = this.props.sketch.controlBindings;
-		let descriptions = this.props.sketch.controlDescriptions;
-		return(
+	render() {
+		return (
 			<div className='content'>
-				<div className='section-title' id='top-title'>COMPOSER</div>
 				<div className='section' id='top-section'>
-					<div id='canvas-wrap'>
-						<div id='sketch-standin'>
-							<div id='canvas-area'>
-								<div className='canvas-section' id='canvas-left'>
-									<div className='canvas-section-title'>Available Components</div>
+					<div id='section-wrap' className='grad-background'>
+						<div id='section-body'>
+							<div id='photo-display-area'>
+								<div className="camera">
+									<video ref={video => { this.video = video }} id="video" onCanPlay={() => this.handlePlay()}>
+										Video stream not available.
+									</video>
 								</div>
-								{this.getSketch()}
-								<div className='canvas-section' id='canvas-right'>
-									<div className='canvas-section-title'>In Use</div>
+								<canvas ref={canvas => this.canvas = canvas} id="canvas">
+								</canvas>
+								<div className="output">
+									<img src={this.state.photoData} ref={photo => this.photo = photo} id="photo" alt="" style={
+										this.state.photoData === null ? { zIndex: -1 } : { zIndex: 9999, border: "1 px solid red" }
+									}>
+									</img>
 								</div>
 							</div>
-							<div id='sketch-controls'>
-
+							<div id='button-wrap'>
+								<div className='grad-background' id='start-camera-wrap' onClick={() => this.getMedia({ audio: false, video: true })}>
+									<div id='start-camera-inner'>Start Camera</div>
+								</div>
+								<button id="take-photo" onClick={() => this.takePicture()}>Take photo</button>
 							</div>
 						</div>
 					</div>
-				</div>
-				<div id='bottom-wrap'>
-
-					<div id='site-info-wrap'>
-						<div id='site-info-title'>Welcome to my site!</div>
-						<div id='site-info-text'><Link to='/Blog/P5JS-Composition-in-React'>How does this work?</Link></div>
-					</div>
-					<div id='animation-controls'>
-						<div id='controls-title'>Controls
-							<div className='button' 
-								onClick={this.handleClick}
-								id='toggle-animation'
-							>{this.state.playAnimation ? "Pause":"Start"}</div>
-						</div>
-						{Object.keys(controls).map(binding => {
-							return <div key={binding} className='controlBinding'>{controls[binding]}</div>;
-						})}
-						{Object.keys(descriptions).map(desc => {
-							return <div key={desc} className='controlDesc'>{descriptions[desc]}</div>;
-						})}
+					<div id='prediction-wrap'>
+						{this.props.models.results !== null ? this.props.models.results.map((pred, i) => {
+							return (
+								<div key={i} className='model-prediction'>
+									<div className='model-label'>
+										{pred[0]}
+									</div>
+									<div className='model-prob'>
+										{pred[1]}
+									</div>
+								</div>
+							)
+						}) : null}
 					</div>
 				</div>
-			</div>
+			</div >
 		)
 	}
 }
 
 const mapStateToProps = state => {
 	return {
-		sketch: state.sketches
+		models: state.models,
 	}
 }
-
 const mapDispatchToProps = dispatch => {
 	return {
-		fetchSketch: () => {
-			return dispatch(sketches.fetchSketch());
-		},
+		fetchModel: data => {
+			return dispatch(models.fetchModel(data));
+		}
 	}
 }
-
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

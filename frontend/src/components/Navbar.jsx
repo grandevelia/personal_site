@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '../css/navbar.css';
 
 export default class Navbar extends Component {
-	renderLink(id, mobile, dropdown=false, dropdownContent=false){
-		if (dropdown){
+	renderLink(id, mobile, dropdown = false, dropdownContent = false) {
+		if (dropdown) {
 			return (
 				<NavbarLinkDropdown
 					id={id}
@@ -14,52 +14,53 @@ export default class Navbar extends Component {
 			);
 		} else {
 			return (
-				<NavbarLink 
+				<NavbarLink
 					id={id}
 					mobile={mobile}
 				/>
 			);
 		}
 	}
-	render(){
-		return(
+	render() {
+		return (
 			<div id='navbar'>
+				<div className='section-title' id='top-title'>COMPOSER</div>
 				<div id='navbar-links'>
-		            {this.renderLink("Home","")}
-		            {this.renderLink("Blog","")}
-		            {this.renderLink("Portfolio", "", true, ["Web","Projects","Visual"])}
-			    </div>
-			    <div id='mobile-menu'>
-		            {this.renderLink("Home","mobile-")}
-		            {this.renderLink("Blog","mobile-")}
-		            {this.renderLink("Portfolio", "mobile-", true, ["Web","Projects","Visual"])}
-		        </div>
-		        <div className='icon-menu fa-icon'>
-		            <i className='fa fa-bars fa-lg'></i>
-		        </div>
-	        </div>
+					{this.renderLink("Home", "")}
+					{this.renderLink("Blog", "")}
+					{this.renderLink("Portfolio", "", true, ["Web", "Projects", "Visual"])}
+				</div>
+				<div id='mobile-menu'>
+					{this.renderLink("Home", "mobile-")}
+					{this.renderLink("Blog", "mobile-")}
+					{this.renderLink("Portfolio", "mobile-", true, ["Web", "Projects", "Visual"])}
+				</div>
+				<div className='icon-menu fa-icon'>
+					<i className='fa fa-bars fa-lg'></i>
+				</div>
+			</div>
 		);
 	}
 }
 
-function NavbarLink(props){
+function NavbarLink(props) {
 	return (
 		<div>
 			<Link to={'/' + props.id + "/"} id={props.mobile + props.id.toLowerCase()} className={props.mobile + "navbar-link"}>{props.id}</Link>
 		</div>
 	);
 }
-function NavbarLinkDropdown(props){
+function NavbarLinkDropdown(props) {
 	return (
 		<div>
-			<Link to={'/' + props.id} id={props.mobile + props.id.toLowerCase()} className={props.mobile + "navbar-link dropdown"}>{props.id}			
+			<Link to={'/' + props.id} id={props.mobile + props.id.toLowerCase()} className={props.mobile + "navbar-link dropdown"}>{props.id}
 				<i className='fa fa-angle-down fa-lg'></i>
 			</Link>
-			<div className={props.mobile+'dropdown-content'}>
+			<div className={props.mobile + 'dropdown-content'}>
 				{
 					props.dropdownContent.map(link => {
-					return <Link to={'/' + props.id + '/' + link.replace(/ /g,'')} className={props.mobile + 'dropdown-item'} key={link}>{link}</Link>;
-				})}
+						return <Link to={'/' + props.id + '/' + link.replace(/ /g, '')} className={props.mobile + 'dropdown-item'} key={link}>{link}</Link>;
+					})}
 			</div>
 		</div>
 	);

@@ -6,7 +6,6 @@ import { Route, BrowserRouter as Router, Switch, withRouter } from 'react-router
 import '../css/blog.css';
 import BlogSidebar from './BlogSidebar';
 import BlogTemplate from "./BlogTemplate";
-import BlogAdmin from "./BlogAdmin";
 
 class Blog extends Component {
 	state = {
@@ -14,54 +13,26 @@ class Blog extends Component {
 		text: "",
 		active: "",
 	}
-	updateTitle(title){
-		this.setState({title: title});
-	}
-	updateText(text){
-		this.setState({text:text});
-	}
-	selectForEdit = (id, title, text) => {
-		this.setState({active: id, text: text, title: title});
-	}
-	submitBlog = (e) => {
-		e.preventDefault();
-		if (this.state.active === ""){
-			this.props.addBlog(this.state.title, this.state.text).then(this.setState({title: "", text: ""}));
-		} else {
-			this.props.updateBlog(this.state.active, this.state.title, this.state.text);
-		}
-	}
-	componentDidMount(){
+	componentDidMount() {
 		this.props.fetchBlogs();
 	}
-	render(){
+	render() {
 		let myBlogs = this.props.blogs;
-		console.log(this.props)
-		return(
+		return (
 			<Router>
 				<div id='all-blogs-wrap'>
-					<BlogSidebar blogs={myBlogs} active={this.state.active}/>
+					<BlogSidebar blogs={myBlogs} active={this.state.active} />
 					<div id='blog-area'>
-						{this.props.isAuthenticated ? 
-							<BlogAdmin 
-								submitBlog={(e) => this.submitBlog(e)} 
-								selectForEdit={(id, title, text) => this.selectForEdit(id, title, text)}
-								updateTitle={(title) => this.updateTitle(title)}
-								updateText={(text) => this.updateText(text)}
-								title={this.state.title}
-								text={this.state.text}
-							/> : ""
-						}
 						<Switch>
 							{myBlogs.map(blog => {
 								return (
-									<Route 
-										exact path={"/Blog/" + blog.title.replace(/ /g, "-")} 
-										key={blog.id} 
+									<Route
+										exact path={"/Blog/" + blog.title.replace(/ /g, "-")}
+										key={blog.id}
 										render={() => {
 											return (
-												<BlogTemplate 
-													blog={blog} 
+												<BlogTemplate
+													blog={blog}
 													delete={(id) => this.props.deleteBlog(this.state.active)}
 													selectForEdit={(id, title, text) => this.selectForEdit(id, title, text)}
 													isAuthenticated={this.props.isAuthenticated}
@@ -81,25 +52,15 @@ class Blog extends Component {
 
 const mapStateToProps = state => {
 	return {
-		blogs: state.blogs,
-		isAuthenticated: state.auth.isAuthenticated
+		blogs: state.blogs
 	}
 }
 
 const mapDispatchToProps = dispatch => {
 	return {
-		addBlog: (title, text) => {
-			return dispatch(blogs.addBlog(title, text));
+		fetchBlogs: () => {
+			dispatch(blogs.fetchBlogs());
 		},
-    	updateBlog: (id, title, text) => {
-	    	return dispatch(blogs.updateBlog(id, title, text));
-	    },
-	    deleteBlog: (id) => {
-	    	dispatch(blogs.deleteBlog(id));
-	    },
-	    fetchBlogs: () => {
-	    	dispatch(blogs.fetchBlogs());
-	    },
 	}
 }
 

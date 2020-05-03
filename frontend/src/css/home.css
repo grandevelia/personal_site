@@ -1,147 +1,112 @@
-.wrap{
-	display: flex;
-	flex: 1;
-	flex-direction: column;
-}
-#grad{
-	position: relative;
-	flex-basis: 52%;
-	flex: 1;
-	width: 100%;
-	z-index: 9;
-	background-color: black;
-	box-shadow: 0px 2px 1px rgba(0,0,0,0.25);
-	-webkit-box-shadow: 0px 2px 1px rgba(0,0,0,0.25);
-	-moz-box-shadow: 0px 2px 1px rgba(0,0,0,0.25);
-}
-canvas{
-	position: absolute;
-	top: -3rem;
-	left: 50%;
-	transform: translateX(-50%);
-	width: 100%;
-	height: 100%;
-}
 .section{
 	height: 100vh;
 	display: flex;
 	align-items: center;
 	flex-direction: column;
 }
-#top-title{
-	font-size: 3em;
-	text-align: center;
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%);
-	top: -2.5rem;
-	display: flex;
-	background: -webkit-linear-gradient(left top, rgb(254, 3, 45), rgb(33, 248, 255));
- 	-webkit-background-clip: text;
- 	-webkit-text-fill-color: transparent;
+.grad-background {
+	background: red; /* For browsers that do not support gradients */
+	background: -webkit-linear-gradient(left top, red, rgb(91,117,244)); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(bottom right, red, rgb(91,117,244)); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(bottom right, red, rgb(91,117,244)); /* For Firefox 3.6 to 15 */
+  	background: linear-gradient(circle at 90% 100%, rgb(255, 195, 39) 2%, rgb(255, 33, 39) 15%, rgb(59, 33, 225), rgb(59, 33, 75)); /* Standard syntax */
+	padding: 2px;
 }
-#top-section{
-	padding-top: 2.5%;
-	background-color: black;
-}
-#canvas-wrap{
-	width: 90%;
+#section-wrap{
+	width: 60%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	height: 100%;
-	background: red; /* For browsers that do not support gradients */
-  	background: -webkit-linear-gradient(left top, red, rgb(91,117,244)); /* For Safari 5.1 to 6.0 */
-  	background: -o-linear-gradient(bottom right, red, rgb(91,117,244)); /* For Opera 11.1 to 12.0 */
-  	background: -moz-linear-gradient(bottom right, red, rgb(91,117,244)); /* For Firefox 3.6 to 15 */
-	background: radial-gradient(circle at 90% 100%, rgb(255, 195, 39) 2%, rgb(255, 33, 39) 15%, rgb(59, 33, 225), rgb(59, 33, 75)); /* Standard syntax */
+	height: 70%;
 }
-#sketch-standin{
-	background-color: black;
+#section-body{
+	background-color: white;
 	width: 99.5%;
 	height: 99.5%;
+	padding: 1.25%;
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
-#canvas-area{
-	display: flex;
-	flex-basis: 75%;
-	flex-direction: row;
-	color: white;
-}
-.canvas-section{
-	flex-basis: 20%;
-}
-#canvas-left{
-}
-#sketch{
-	flex-basis: 60%;
-}
-#bottom-wrap{
-	flex-basis: 48%;
-	flex: 1;
+#photo-display-area{
 	width: 100%;
-	position: relative;
+	height: 80%;
 	display: flex;
-	justify-content: space-between;
-}
-#site-info-wrap{
+	align-items: center;
 	position: relative;
-	flex-basis: 33%;
+}
+#video {
+	width:100%;
+	height:100%;
+} 
+#photo {
+	width: 100%;
+	height: 100%;
+}
+#canvas {
+	display:none;
+}
+.camera {
+	width: 100%;
+	height: 100%;
+}
+.output {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+#button-wrap{
+	align-self: flex-end;
+	height: 20%;
+	width: 100%;
 	display: flex;
 	flex-direction: column;
-	text-align: left;
-	margin: 2.5%;
+	justify-content: center;
+	align-items: center;
 }
-#site-info-title{
-	margin-bottom: 2.5%;
-	font-size: 1.5em;
-	color: rgb(249, 248, 255);
-	text-shadow: 1px 1px 1px rgba(0,0,0,0.4);
+#start-camera-wrap{
+	width: 60%;
+	height: 3rem;
+	border-radius: 10px;
 }
-#site-info-text{
-	color: white;
-	font-size: 0.8em;
-}
-#animation-controls{
-	position: relative;
-	flex-basis: 40%;
-	display: flex;
-	flex-direction: column;
-	text-align: left;
-	padding: 1.25% 2.5%;
-	margin: 2.5%;
-	border: 1px solid rgba(255,255,255,0.7);
-	background-color: rgba(0,0,0,0.15)
-}
-#controls-title{
-	font-size: 1.25em;
-	color: white;
-	display: flex;
-	justify-content: space-between;
-}
-#toggle-animation{
-	font-size: 0.5em !important;
-	background-color: white;
-	color: red;
-	height: 3em;
-	padding: 2.5%;
-	line-height: 1.5em;
-}
-#toggle-animation:hover{
+#start-camera-wrap:hover{
 	cursor: pointer;
-	background-color: red;
-	color: white;
 }
-.control{
-	font-size: 0.8em;
-	margin-top: 2.5%;
+#start-camera-inner{
+	border-radius: 10px;
 	display: flex;
-	justify-content: space-around;
+	height: 100%;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+	background-color: white;
 }
-.control-name{
-	
+#take-photo {
+	width: 60%;
+	margin-top: 2.5%;
+	height:2rem;
+	border: 1px solid black;
+	font-family: "Lucida Grande", "Arial", sans-serif;
 }
-.control-desc{
+#take-photo:hover{
+	cursor: pointer;
+}
+#prediction-wrap{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.model-prediction{
+	margin: 1px;
+	display: flex;
+	flex-direction: row;
+	width: 60%;
+	border: 1px solid rgba(0,0,0,0.1);
+	padding: 1%;
+	justify-content: space-evenly;
 }
