@@ -99,7 +99,6 @@ pycparser==2.19
 Pygments==2.6.1
 PyJWT==1.7.1
 pylint==2.4.4
-pynvx==1.0.0
 pyOpenSSL==19.1.0
 pyparsing==2.4.6
 pyrsistent==0.15.7
