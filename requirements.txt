@@ -19,7 +19,6 @@ cffi==1.13.2
 chardet==3.0.4
 click==7.1.2
 cryptography==2.8
-cv==1.0.0
 cycler==0.10.0
 cymem==2.0.3
 decorator==4.4.2
