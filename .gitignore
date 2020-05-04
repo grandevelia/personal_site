@@ -4,3 +4,4 @@ env/*
 */migrations/*
 */*.pyc
 
+node_modules

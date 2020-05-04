@@ -7,6 +7,7 @@ from .models import Blog
 from .serializers import BlogSerializer
 from .apps import PredictorConfig
 
+from fastai.vision import open_image
 from io import BytesIO
 from PIL import Image
 
@@ -24,13 +25,6 @@ class BlogViewSet(viewsets.ModelViewSet):
         serializer.save(owner=self.request.user)
 
 
-def make_vector(image):
-    vector = []
-    for item in image.tolist():
-        vector.extend(item)
-    return vector
-
-
 class DogAPI(viewsets.ModelViewSet):
     parser_classes = [MultiPartParser]
 
@@ -40,11 +34,10 @@ class DogAPI(viewsets.ModelViewSet):
         return self.predict_image_from_bytes(bytes)
 
     def predict_image_from_bytes(self, bytes):
-        img = Image(BytesIO(bytes))
-        img_vector = make_vector(img)
-        response = requests.post(prediction_url, json=json)
-        print(response)
-
+        img = open_image(BytesIO(bytes))
+        learner = PredictorConfig.dog_classifier
+        _, _, losses = learner.predict(img)
+        classes = learner.data.classes
         out = sorted(
             zip(classes,
                 map(float, losses)),
