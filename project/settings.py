@@ -30,7 +30,7 @@ SECRET_KEY = 'n60gjk$8+!vlxq@lwk)1wem-5)7fjm0i*2&bo^5bfw)0bm&bu1'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'eliasdevoe.herokuapp.com',
+    'devoeelias.herokuapp.com',
     '127.0.0.1:3000',
     'localhost',
     '127.0.0.1',
