@@ -13,8 +13,6 @@ import Blog from "./components/Blog";
 import BlogHome from "./components/BlogHome";
 import NotFound from "./components/NotFound";
 
-import 'font-awesome/css/font-awesome.min.css';
-
 let store = createStore(myApp, applyMiddleware(thunk))
 
 class RootContainerComponent extends Component {

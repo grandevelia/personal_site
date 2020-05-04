@@ -16,6 +16,9 @@ import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'build'),
+]
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -34,7 +37,6 @@ ALLOWED_HOSTS = [
 ]
 
 LEARNERS = os.path.join(BASE_DIR, 'personal_site/learners')
-IMAGES = os.path.join(BASE_DIR, 'personal_site/images')
 
 # Application definition
 
@@ -162,6 +164,3 @@ django_heroku.settings(locals())
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'build'),
-]
