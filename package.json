@@ -1,7 +1,6 @@
 {
   "name": "frontend",
   "version": "0.1.0",
-  "homepage": "staticfiles/",
   "private": true,
   "dependencies": {
     "autoprefixer": "7.1.6",
