@@ -94,7 +94,7 @@ class Home extends Component {
 						<div id='section-body'>
 							<div id='photo-display-area'>
 								<div className="camera">
-									<video ref={video => { this.video = video }} id="video" playsinline autoplay controls="true" onCanPlay={() => this.handlePlay()}>
+									<video ref={video => { this.video = video }} id="video" playsinline onCanPlay={() => this.handlePlay()}>
 										Video stream not available.
 									</video>
 								</div>
@@ -108,7 +108,7 @@ class Home extends Component {
 								</div>
 							</div>
 							<div id='button-wrap'>
-								<div className='grad-background' id='start-camera-wrap' onClick={() => this.getMedia({ audio: false, video: true })}>
+								<div className='grad-background' id='start-camera-wrap' onClick={() => this.getMedia({ audio: false, video: { facingMode: 'environment' } })}>
 									<div id='start-camera-inner'>Start Camera</div>
 								</div>
 								<button id="take-photo" onClick={() => this.takePicture()}>Take photo</button>
