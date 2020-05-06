@@ -20,7 +20,12 @@ class Home extends Component {
 	}
 	async getMedia(constraints) {
 		let stream = null;
+
 		try {
+			let video = this.video;
+			video.setAttribute('autoplay', '');
+			video.setAttribute('muted', '');
+			video.setAttribute('playsinline', '');
 			stream = await navigator.mediaDevices.getUserMedia(constraints);
 			this.setState({
 				stream: stream
@@ -34,7 +39,6 @@ class Home extends Component {
 			})
 
 		} catch (err) {
-			console.log(err)
 			alert("Camera not found")
 		}
 	}
