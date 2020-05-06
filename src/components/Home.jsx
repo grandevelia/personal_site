@@ -22,10 +22,6 @@ class Home extends Component {
 		let stream = null;
 
 		try {
-			let video = this.video;
-			video.setAttribute('autoplay', '');
-			video.setAttribute('muted', '');
-			video.setAttribute('playsinline', '');
 			stream = await navigator.mediaDevices.getUserMedia(constraints);
 			this.setState({
 				stream: stream
