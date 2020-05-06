@@ -20,7 +20,6 @@ class Home extends Component {
 	}
 	async getMedia(constraints) {
 		let stream = null;
-
 		try {
 			stream = await navigator.mediaDevices.getUserMedia(constraints);
 			this.setState({
@@ -35,6 +34,7 @@ class Home extends Component {
 			})
 
 		} catch (err) {
+			console.log(err)
 			alert("Camera not found")
 		}
 	}
@@ -94,7 +94,7 @@ class Home extends Component {
 						<div id='section-body'>
 							<div id='photo-display-area'>
 								<div className="camera">
-									<video ref={video => { this.video = video }} id="video" onCanPlay={() => this.handlePlay()}>
+									<video ref={video => { this.video = video }} id="video" playsinline autoplay controls="true" onCanPlay={() => this.handlePlay()}>
 										Video stream not available.
 									</video>
 								</div>
