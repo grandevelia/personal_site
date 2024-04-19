@@ -23,3 +23,4 @@ React + Django app to classify your dog.
 
 ## TODO
 - Use the new text-to-image models to build a dataset of hybrid dogs. Update fine tuning loss to binary cross entropy to allow multiclass prediction. Market the app as a workaround to genetic testing.
+- Catch error for camera not found on mobile - make sure camera access is allowed on your mobile browser!
