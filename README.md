@@ -1,13 +1,14 @@
 ## Canine Classifier
-Also contains starter code for P5js react composer if I ever get around to app composition
+React + Django app to classify your dog. 
 
 ## Backend
 - Note that the pytorch download included in requirements.txt will not work for local development; comment the first 2 lines
-- run with manage.py runserver
+- run with `manage.py runserver`
 - main app under /personal_site
+- current working python 3.9.1
 
 ## Frontend
-- Run with npm run start
+- Run with `npm run start`
 - code under /src
 
 ## Deploying to Heroku
