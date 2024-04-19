@@ -306,6 +306,12 @@ and (orientation : landscape) {
     text-decoration: none;
     width: 100%;
   }
+  #top-title{
+    font-size: 2em;
+    background: -webkit-linear-gradient(left top, rgb(254, 3, 45), rgb(162, 33, 255));
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+  }
 }
 
 @media only screen 
@@ -394,5 +400,12 @@ and (max-width : 550px), (max-width: 550px) and (orientation: portrait){
   .fa-user-circle, .fa-users{
     position: relative;
     margin-right: 0.5em;
+  }
+
+  #top-title{
+    font-size: 2em;
+    background: -webkit-linear-gradient(left top, rgb(254, 3, 45), rgb(162, 33, 255));
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
   }
 }

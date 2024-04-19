@@ -9,7 +9,7 @@ React + Django app to classify your dog.
 - run with `manage.py runserver`
 - main app code under /personal_site
 - deep model code under /model_setup
-- current working python 3.9.1
+- current working python 3.9.1. Update runtime.txt if changing.
 
 ## Frontend
 - Run with `npm run start`
