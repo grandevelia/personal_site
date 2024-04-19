@@ -94,7 +94,7 @@ class Home extends Component {
 						<div id='section-body'>
 							<div id='photo-display-area'>
 								<div className="camera">
-									<video ref={video => { this.video = video }} id="video" playsinline onCanPlay={() => this.handlePlay()}>
+									<video ref={video => { this.video = video }} id="video" playsInline onCanPlay={() => this.handlePlay()}>
 										Video stream not available.
 									</video>
 								</div>

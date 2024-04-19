@@ -4,6 +4,7 @@
   max-height: 3rem;
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
   padding: 5% 2.5%;
   position: relative;

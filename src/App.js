@@ -9,8 +9,6 @@ import { models } from "./actions";
 import myApp from './reducers';
 import Layout from "./components/Layout";
 import Home from "./components/Home";
-import Blog from "./components/Blog";
-import BlogHome from "./components/BlogHome";
 import NotFound from "./components/NotFound";
 
 let store = createStore(myApp, applyMiddleware(thunk))
@@ -22,8 +20,6 @@ class RootContainerComponent extends Component {
         <Layout>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/Blog/" component={() => (<BlogHome fetchModel={this.props.fetchModel} />)} />
-            <Route path="/Blog/" component={Blog} />
             <Route component={NotFound} />
           </Switch>
         </Layout>

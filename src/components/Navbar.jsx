@@ -24,20 +24,7 @@ export default class Navbar extends Component {
 	render() {
 		return (
 			<div id='navbar'>
-				<div className='section-title' id='top-title'>COMPOSER</div>
-				<div id='navbar-links'>
-					{this.renderLink("Home", "")}
-					{this.renderLink("Blog", "")}
-					{this.renderLink("Portfolio", "", true, ["Web", "Projects", "Visual"])}
-				</div>
-				<div id='mobile-menu'>
-					{this.renderLink("Home", "mobile-")}
-					{this.renderLink("Blog", "mobile-")}
-					{this.renderLink("Portfolio", "mobile-", true, ["Web", "Projects", "Visual"])}
-				</div>
-				<div className='icon-menu fa-icon'>
-					<i className='fa fa-bars fa-lg'></i>
-				</div>
+				<div className='section-title' id='top-title'>CANINE CLASSIFIER</div>
 			</div>
 		);
 	}
