@@ -22,7 +22,7 @@ dj-database-url==2.1.0
 Django==4.2.11
 django-allauth==0.61.1
 django-braces==1.14.0
-django-cors-headers==3.2.1
+django-cors-headers==4.3.1
 django-rest-auth==0.9.5
 django-webpack-loader==0.6.0
 djangorestframework==3.15.1
