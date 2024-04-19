@@ -3,8 +3,8 @@ React + Django app to classify your dog.
 
 ## Backend
 - Note that the pytorch download included in requirements.txt will not work for local development
-- Start postgres: `brew services start postgresql`
-- Stop postgres: `brew services stop postgresql`
+- Start postgres: `pg_ctl -D /usr/local/var/postgres start`
+- Stop postgres: `pg_ctl -D /usr/local/var/postgres stop`
 - Changes to DB models etc: `python manage.py makemigrations && python manage.py migrate`
 - run with `manage.py runserver`
 - main app code under /personal_site
@@ -19,3 +19,7 @@ React + Django app to classify your dog.
 - Build frontend with `npm run build`
 - herokuapp name is devoeelias
 - add + commit to git normally, then `git push heroku master`
+
+
+## TODO
+- Use the new text-to-image models to build a dataset of hybrid dogs. Update fine tuning loss to binary cross entropy to allow multiclass prediction. Market the app as a workaround to genetic testing.

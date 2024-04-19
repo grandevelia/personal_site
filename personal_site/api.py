@@ -28,6 +28,7 @@ class DogAPI(viewsets.ModelViewSet):
             key=lambda p: p[1],
             reverse=True
         )
+        out = [(a.replace("_", " ").title(), round(b, 3)) for a, b in out[:10]]
 
         return Response({
             "predictions": out[:10]
